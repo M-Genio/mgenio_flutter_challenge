@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mgenio_flutter_challenge/screens/options_calculator_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const OptionsCalculator(optionsData: [
+      home: const OptionsCalculatorScreen(optionsData: [
         {
           "strike_price": 100,
           "type": "Call",
@@ -50,36 +51,5 @@ class MyApp extends StatelessWidget {
         }
       ]),
     );
-  }
-}
-
-class OptionsCalculator extends StatefulWidget {
-  const OptionsCalculator({super.key, required this.optionsData});
-
-  final List<Map<String, dynamic>> optionsData;
-
-  @override
-  State<OptionsCalculator> createState() => _OptionsCalculatorState();
-}
-
-class _OptionsCalculatorState extends State<OptionsCalculator> {
-  List<Map<String, dynamic>> optionsData = [];
-
-  @override
-  void initState() {
-    super.initState();
-    optionsData = widget.optionsData;
-  }
-
-  // Your code here
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text("Options Profit Calculator"),
-        ),
-        body: const Text("Your code here"));
   }
 }
