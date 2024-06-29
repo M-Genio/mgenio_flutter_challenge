@@ -1,22 +1,24 @@
-import 'dart:math';
 import 'package:mgenio_flutter_challenge/models/option_contract.dart';
 
 double calculateProfitLoss(double underlyingPrice, List<OptionContract> contracts) {
   double totalProfitLoss = 0.0;
 
   for (var contract in contracts) {
-    double intrinsicValue = 0.0;
+    double intrinsicValue;
     if (contract.type == 'Call') {
-      intrinsicValue = max(0, underlyingPrice - contract.strikePrice);
-    } else if (contract.type == 'Put') {
-      intrinsicValue = max(0, contract.strikePrice - underlyingPrice);
+      intrinsicValue = (underlyingPrice - contract.strikePrice).clamp(0.0, double.infinity);
+    } else {
+      intrinsicValue = (contract.strikePrice - underlyingPrice).clamp(0.0, double.infinity);
     }
-    
-    double contractPrice = (contract.bid + contract.ask) / 2;
-    double position = contract.longShort == 'long' ? 1 : -1;
-    totalProfitLoss += position * (intrinsicValue - contractPrice);
+
+    double optionPrice = (contract.bid + contract.ask) / 2;
+
+    if (contract.longShort == 'long') {
+      totalProfitLoss += intrinsicValue - optionPrice;
+    } else {
+      totalProfitLoss += optionPrice - intrinsicValue;
+    }
   }
 
   return totalProfitLoss;
 }
-
