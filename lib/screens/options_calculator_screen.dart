@@ -1,4 +1,4 @@
-import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mgenio_flutter_challenge/models/option_contract.dart';
 import 'package:mgenio_flutter_challenge/utils/calculate_profit_loss.dart';

@@ -5,6 +5,7 @@ import 'package:mgenio_flutter_challenge/utils/calculate_profit_loss.dart';
 
 class RiskRewardGraph extends StatelessWidget {
   final List<OptionContract> contracts;
+
 RiskRewardGraph({required this.contracts});
 
   @override
@@ -55,5 +56,3 @@ RiskRewardGraph({required this.contracts});
     return dataPoints;
   }
 }
-
-
