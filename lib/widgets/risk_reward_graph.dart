@@ -5,8 +5,7 @@ import 'package:mgenio_flutter_challenge/utils/calculate_profit_loss.dart';
 
 class RiskRewardGraph extends StatelessWidget {
   final List<OptionContract> contracts;
-
-  const RiskRewardGraph({super.key, required this.contracts});
+RiskRewardGraph({required this.contracts});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class RiskRewardGraph extends StatelessWidget {
             belowBarData: BarAreaData(show: true, color: Colors.lightBlue.withOpacity(0.3)),
           ),
         ],
-         titlesData: FlTitlesData(
+        titlesData: FlTitlesData(
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
@@ -39,24 +38,22 @@ class RiskRewardGraph extends StatelessWidget {
                 return Text(value.toInt().toString());
               },
             ),
-         ),
+          ),
         ),
-
         borderData: FlBorderData(show: true),
-        gridData: const FlGridData(show: true),
+        gridData: FlGridData(show: true),
       ),
     );
   }
 
   List<FlSpot> _generateDataPoints() {
     List<FlSpot> dataPoints = [];
-
     for (double price = 0; price <= 200; price += 1) {
       double profitLoss = calculateProfitLoss(price, contracts);
       dataPoints.add(FlSpot(price, profitLoss));
     }
-
     return dataPoints;
   }
 }
+
 

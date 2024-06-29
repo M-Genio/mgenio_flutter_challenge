@@ -1,9 +1,9 @@
 class OptionContract {
   final double strikePrice;
-  final String type; // "Call" or "Put"
+  final String type;
   final double bid;
   final double ask;
-  final String longShort; // "long" or "short"
+  final String longShort;
   final DateTime expirationDate;
 
   OptionContract({
@@ -15,15 +15,14 @@ class OptionContract {
     required this.expirationDate,
   });
 
-  factory OptionContract.fromJson(Map<String, dynamic> json) {
-    
+  factory OptionContract.fromMap(Map<String, dynamic> map) {
     return OptionContract(
-      strikePrice: json['strike_price'],
-      type: json['type'],
-      bid: json['bid'],
-      ask: json['ask'],
-      longShort: json['long_short'],
-      expirationDate: DateTime.parse(json['expiration_date']),
+      strikePrice: map['strike_price'].toDouble(),
+      type: map['type'],
+      bid: map['bid'].toDouble(),
+      ask: map['ask'].toDouble(),
+      longShort: map['long_short'],
+      expirationDate: DateTime.parse(map['expiration_date']),
     );
   }
 }
